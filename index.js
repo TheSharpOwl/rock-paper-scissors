@@ -11,7 +11,7 @@ function playGame() {
   let playerScore = 0;
   let botScore = 0;
   let result = "";
-
+  // todo make total rounds increase by 2 in case the result is draw (or decrase i by 2)
   for (let i = 0; i < 5; i++) {
     let message =
       (result === "Draw" ? result : "") +
