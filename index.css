@@ -1,0 +1,17 @@
+/* Because all images are just for rock paper scissors and should have the same size */
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+  }
+
+.game-choices {
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}

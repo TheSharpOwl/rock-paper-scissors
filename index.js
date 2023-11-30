@@ -41,6 +41,7 @@ function playGame() {
     window.alert("You Lose :-(");
   }
 }
+
 function playRound(playerMove) {
   const winning = new Map([
     ["Paper", "Rock"],
