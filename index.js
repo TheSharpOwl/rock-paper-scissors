@@ -1,5 +1,12 @@
 const moves = ["Rock", "Paper", "Scissors"];
 
+for (let i = 0; i < moves.length; i++) {
+  console.log("inside the for loop")
+  const buttonName = `#${moves[i].toLowerCase()}Btn`;
+  const button = document.querySelector(buttonName)
+  button.onclick = () => alert(`Clicked the ${buttonName}`)
+}
+
 // The maximum is exclusive and the minimum is inclusive
 function getRandomInt(min, max) {
   min = Math.ceil(min);
