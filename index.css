@@ -15,3 +15,22 @@ img {
     flex-wrap: nowrap;
     justify-content: space-around;
 }
+
+.score-part {
+  margin-left: 15%;
+  margin-right: 15%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.scores-row {
+  margin-top: 4%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}

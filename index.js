@@ -1,10 +1,33 @@
-const moves = ["Rock", "Paper", "Scissors"];
+const moves = ["Rock", "Paper", "Scissors", "Reset"];
+const TOTAL_ROUNDS = 5;
+let playerScore = 0,
+  botScore = 0,
+  result = "",
+  roundsPlayedCount = 0;
+
+resetRounds = () => {
+  roundsPlayedCount = 0;
+  resultField.innerHTML = "";
+};
+playOneRound = (moveName) => {
+  roundsPlayedCount += 1;
+  playRound(moveName, roundsPlayedCount);
+};
+
+const playerScoreText = document.querySelector("#playerScore");
+const botScoreText = document.querySelector("#botScore");
+const resultField = document.querySelector("#resultField");
 
 for (let i = 0; i < moves.length; i++) {
-  console.log("inside the for loop")
   const buttonName = `#${moves[i].toLowerCase()}Btn`;
-  const button = document.querySelector(buttonName)
-  button.onclick = () => alert(`Clicked the ${buttonName}`)
+  const button = document.querySelector(buttonName);
+  if (moves[i] == "Reset") {
+    button.addEventListener("click", resetRounds);
+  } else {
+    button.addEventListener("click", () => {
+      playOneRound(moves[i]);
+    });
+  }
 }
 
 // The maximum is exclusive and the minimum is inclusive
@@ -14,42 +37,41 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function playGame() {
-  let playerScore = 0;
-  let botScore = 0;
-  let result = "";
-  // todo make total rounds increase by 2 in case the result is draw (or decrase i by 2)
-  for (let i = 0; i < 5; i++) {
-    let message =
-      (result === "Draw" ? result : "") +
-      `\n Your Score ${playerScore}, Computer Score: ${botScore}, Rounds Left: ${
-        5 - i
-      } \n please choose a move`;
-
-    let playerMove = prompt(message);
-
-    if (typeof playerMove !== "string" || !moves.includes(playerMove)) {
-      result = "Error in the value please try again";
-      i--;
-      continue;
-    }
-
-    result = playRound(playerMove);
-    if (result === "PC") botScore++;
-    else if (result === "Player") playerScore++;
-    else result = `${result} last time!`;
+function playRound(moveName, totalRounds) {
+  if (totalRounds > 5) {
+    alert("Please start a new game");
+    return;
+  } else if (totalRounds <= 0) {
+    alert("Internal Error");
+    return;
   }
 
-  if (playerScore > botScore) {
-    window.alert("You WIN!");
-  } else if (playerScore == botScore) {
-    window.alert("Draw");
-  } else {
-    window.alert("You Lose :-(");
+  let result = ProcessPlayerMove(moveName);
+  if (result == "Player") {
+    playerScore++;
+  } else if (result == "PC") {
+    botScore++;
+  }
+
+  playerScoreText.innerHTML = playerScore;
+  botScoreText.innerHTML = botScore;
+
+  if (totalRounds == TOTAL_ROUNDS) {
+    finishGame(playerScore, botScore);
   }
 }
 
-function playRound(playerMove) {
+function finishGame(playerScore, botScore) {
+  let message =
+    playerScore > botScore
+      ? "You Win"
+      : playerScore == botScore
+      ? "Draw"
+      : "You Lost";
+  resultField.innerHTML = message;
+}
+
+function ProcessPlayerMove(playerMove) {
   const winning = new Map([
     ["Paper", "Rock"],
     ["Scissors", "Paper"],

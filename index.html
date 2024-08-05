@@ -9,11 +9,25 @@
 <h2>Demo JavaScript in Head</h2>
 
 <p id="demo">A Paragraph</p>
-<button type="button" onclick="playGame()">Start Game!</button>
+<button type="button" id="resetBtn">Start New Game</button>
 <div class = 'game-choices'>
-    <div><img src="files/rock.jpeg" id = "scissorsBtn"></div>
+    <div><img src="files/rock.jpeg" id ="rockBtn"></div>
     <div><img src="files/paper.jpeg" id="paperBtn"></div>
-    <div><img src="files/scissors.jpg" id="rockBtn"></div>
+    <div><img src="files/scissors.jpg" id="scissorsBtn"></div>
+</div>
+<div class="scores-row">
+    <div class="score-part">
+        <h1>Your Score</h1>
+        <h1 id="playerScore">0</h1>
+    </div>
+    <div class="score-part">
+        <h1 id="resultField"></h1>
+    </div>
+    <div class="score-part">
+        <h1>Bot Score</h1>
+        <h1 id="botScore">0</h1>
+    </div>
+
 </div>
 </body>
 </html>
