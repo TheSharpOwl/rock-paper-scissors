@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="index.js" defer></script> 
-<link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
-<h2>Demo JavaScript in Head</h2>
+    <h2>Demo JavaScript in Head</h2>
 
-<p id="demo">A Paragraph</p>
-<button type="button" id="resetBtn">Start New Game</button>
-<div class = 'game-choices'>
-    <div><img src="files/rock.jpeg" id ="rockBtn"></div>
-    <div><img src="files/paper.jpeg" id="paperBtn"></div>
-    <div><img src="files/scissors.jpg" id="scissorsBtn"></div>
-</div>
-<div class="scores-row">
-    <div class="score-part">
-        <h1>Your Score</h1>
-        <h1 id="playerScore">0</h1>
+    <p id="demo">A Paragraph</p>
+    <button type="button" id="resetBtn">Start New Game</button>
+    <div class='game-choices'>
+        <div><img src="files/rock.jpeg" id="rockBtn"></div>
+        <div><img src="files/paper.jpeg" id="paperBtn"></div>
+        <div><img src="files/scissors.jpg" id="scissorsBtn"></div>
     </div>
-    <div class="score-part">
-        <h1 id="resultField"></h1>
-    </div>
-    <div class="score-part">
-        <h1>Bot Score</h1>
-        <h1 id="botScore">0</h1>
-    </div>
+    <div class="scores-row">
+        <div class="score-part-container">
+            <h1>Your Score</h1>
+            <h1 id="playerScore">0</h1>
+        </div>
+        <div class="score-part-container">
+            <h1 id="resultField"></h1>
+        </div>
+        <div class="score-part-container">
+            <h1>Bot Score</h1>
+            <h1 id="botScore">0</h1>
+        </div>
 
-</div>
+    </div>
+    <div class="last-move-container">
+        <div class="last-move-board" id="playerLastMoveBoard"></div>
+        <div class="last-move-board" id="pcLastMoveBoard"></div>
+    </div>
 </body>
+
 </html>

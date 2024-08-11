@@ -16,7 +16,7 @@ img {
     justify-content: space-around;
 }
 
-.score-part {
+.score-part-container {
   margin-left: 15%;
   margin-right: 15%;
   display: flex;
@@ -33,4 +33,17 @@ img {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
+}
+
+.last-move-container {
+  margin-top: 4%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.last-move-board {
+  margin-left: 10%;
+  margin-right: 10%;
 }

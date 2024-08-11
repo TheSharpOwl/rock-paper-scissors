@@ -5,18 +5,26 @@ let playerScore = 0,
   result = "",
   roundsPlayedCount = 0;
 
+
+const playerScoreText = document.querySelector("#playerScore");
+const botScoreText = document.querySelector("#botScore");
+const resultField = document.querySelector("#resultField");
+const playerLastMoveBoard = document.querySelector("#playerLastMoveBoard");
+const pcLastMoveBoard = document.querySelector("#pcLastMoveBoard");
+
 resetRounds = () => {
   roundsPlayedCount = 0;
   resultField.innerHTML = "";
+  playerLastMoveBoard.innerHTML = "";
+  pcLastMoveBoard.innerHTML = "";
 };
+
 playOneRound = (moveName) => {
   roundsPlayedCount += 1;
   playRound(moveName, roundsPlayedCount);
 };
 
-const playerScoreText = document.querySelector("#playerScore");
-const botScoreText = document.querySelector("#botScore");
-const resultField = document.querySelector("#resultField");
+
 
 for (let i = 0; i < moves.length; i++) {
   const buttonName = `#${moves[i].toLowerCase()}Btn`;
@@ -80,7 +88,15 @@ function ProcessPlayerMove(playerMove) {
 
   let computerChoice = moves[getRandomInt(0, 3)];
 
-  if (winning.get(computerChoice) === playerMove) return "Player";
-  else if (winning.get(playerMove) === computerChoice) return "PC";
+  let getImageName = (moveName) => {
+   return "files/" + moveName.toLowerCase() + (moveName == "Scissors" ? ".jpg" : ".jpeg");
+  }
+
+  // change the last move on the board
+  playerLastMoveBoard.innerHTML = `<img alt = "last player move", src="${getImageName(playerMove)}"></img>`
+  pcLastMoveBoard.innerHTML = `<img alt = "last pc move", src="${getImageName(computerChoice)}"></img>`
+
+  if (winning.get(computerChoice) === playerMove) return "PC";
+  else if (winning.get(playerMove) === computerChoice) return "Player";
   else return "Draw";
 }
