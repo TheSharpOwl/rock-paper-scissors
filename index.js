@@ -14,11 +14,13 @@ const pcLastMoveBoard = document.querySelector("#pcLastMoveBoard");
 
 resetRounds = () => {
   roundsPlayedCount = 0;
-  resultField.innerHTML = "";
+  resultField.style.visibility = 'hidden';
   playerLastMoveBoard.innerHTML = "";
   pcLastMoveBoard.innerHTML = "";
   playerScoreText.innerHTML = "0";
   botScoreText.innerHTML = "0";
+  playerScore = 0;
+  botScore = 0;
 };
 
 playOneRound = (moveName) => {
@@ -79,6 +81,7 @@ function finishGame(playerScore, botScore) {
       ? "Draw"
       : "You Lost";
   resultField.innerHTML = message;
+  resultField.style.visibility = "visible";
 }
 
 
@@ -89,11 +92,15 @@ function getImageName (moveName) {
 
 function getLastMoveBoardsHTMLs(playerMove, pcMove) {
 
-    let htmlGenerator = (moveName) => {
-      return `<img alt = "last player move", src="${getImageName(moveName)}"></img>`;
+    let htmlGenerator = (moveName, isPlayerMove) => {
+      let headLine = isPlayerMove ? "Your last move" : "Computer Last Move";
+      return `
+            <h3>${headLine}</h3>
+            <img alt = "last player move", src="${getImageName(moveName)}"></img>
+            `;
     }
 
-    return [htmlGenerator(playerMove), htmlGenerator(pcMove)];
+    return [htmlGenerator(playerMove, true), htmlGenerator(pcMove, false)];
 }
 
 
