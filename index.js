@@ -17,6 +17,8 @@ resetRounds = () => {
   resultField.innerHTML = "";
   playerLastMoveBoard.innerHTML = "";
   pcLastMoveBoard.innerHTML = "";
+  playerScoreText.innerHTML = "0";
+  botScoreText.innerHTML = "0";
 };
 
 playOneRound = (moveName) => {
@@ -79,6 +81,22 @@ function finishGame(playerScore, botScore) {
   resultField.innerHTML = message;
 }
 
+
+function getImageName (moveName) {
+  return "files/" + moveName.toLowerCase() + (moveName == "Scissors" ? ".jpg" : ".jpeg");
+}
+
+
+function getLastMoveBoardsHTMLs(playerMove, pcMove) {
+
+    let htmlGenerator = (moveName) => {
+      return `<img alt = "last player move", src="${getImageName(moveName)}"></img>`;
+    }
+
+    return [htmlGenerator(playerMove), htmlGenerator(pcMove)];
+}
+
+
 function ProcessPlayerMove(playerMove) {
   const winning = new Map([
     ["Paper", "Rock"],
@@ -86,17 +104,13 @@ function ProcessPlayerMove(playerMove) {
     ["Rock", "Scissors"],
   ]);
 
-  let computerChoice = moves[getRandomInt(0, 3)];
+  let pcMove = moves[getRandomInt(0, 3)];
 
-  let getImageName = (moveName) => {
-   return "files/" + moveName.toLowerCase() + (moveName == "Scissors" ? ".jpg" : ".jpeg");
-  }
 
   // change the last move on the board
-  playerLastMoveBoard.innerHTML = `<img alt = "last player move", src="${getImageName(playerMove)}"></img>`
-  pcLastMoveBoard.innerHTML = `<img alt = "last pc move", src="${getImageName(computerChoice)}"></img>`
+  [playerLastMoveBoard.innerHTML,pcLastMoveBoard.innerHTML] = getLastMoveBoardsHTMLs(playerMove, pcMove);
 
-  if (winning.get(computerChoice) === playerMove) return "PC";
-  else if (winning.get(playerMove) === computerChoice) return "Player";
+  if (winning.get(pcMove) === playerMove) return "PC";
+  else if (winning.get(playerMove) === pcMove) return "Player";
   else return "Draw";
 }
